@@ -139,7 +139,7 @@ int main()
 
     // Shader modelShader("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
     // Model model("<ABSOLUTE PATH TO MODEL>");
-
+    //
     // modelShader.use();
     // modelShader.setVec3("light.position", 0.0f, 0.0f, 0.0f);
     // modelShader.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
@@ -166,7 +166,7 @@ int main()
         //
         // glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.01f, 100.0f);
         // modelShader.setMat4("projection", projection);
-
+        //
         // model.Draw(modelShader);
         
         triangleShader.use();
