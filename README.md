@@ -17,7 +17,7 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
+- [Additional documentation](#additional-documentation)
 </details>
 
 ## Getting Started
@@ -90,5 +90,6 @@ make clean
 
   - [License](/LICENSE)
   - [DeepWiki](https://deepwiki.com/dhanvithnayak/OpenGL-template)
+  - [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
