@@ -101,16 +101,16 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
 
-        
-    // ---------------------------
+
+    // --------------------------------------------------------
     // FOR TRIANGLE RENDER
     // THIS TRIANGLE IS JUST FOR DEMONSTRATION
     // YOU THE MODEL CLASS INSTEAD, UNLESS YOU REALLY WANT TO RENDER ONLY A TRIANGLE
-    // ---------------------------
+    // --------------------------------------------------------
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f,  0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+         0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
     };
 
     unsigned int VBO;
@@ -123,11 +123,18 @@ int main()
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)(3*sizeof(float)));
+    glEnableVertexAttribArray(1);
     
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    // -------------------------------------------
+    // END OF TRIANGLE SHI 
+    // -------------------------------------------
 
 
     // Shader modelShader("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
