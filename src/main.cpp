@@ -101,15 +101,44 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
 
-    Shader shaderProgram("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
-    // Model bagModel("<ABSOLUTE PATH TO MODEL>");
+        
+    // ---------------------------
+    // FOR TRIANGLE RENDER
+    // THIS TRIANGLE IS JUST FOR DEMONSTRATION
+    // YOU THE MODEL CLASS INSTEAD, UNLESS YOU REALLY WANT TO RENDER ONLY A TRIANGLE
+    // ---------------------------
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f,  0.5f, 0.0f
+    };
 
-    shaderProgram.use();
-    shaderProgram.setVec3("light.position", 0.0f, 0.0f, 0.0f);
-    shaderProgram.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
-    shaderProgram.setVec3("light.diffuse", 0.0f, 0.0f, 0.0f);
-    shaderProgram.setVec3("light.specular", 0.0f, 0.0f, 0.0f);
-    shaderProgram.setFloat("material.shininess", 64);
+    unsigned int VBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
+
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+    // Shader modelShader("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
+    // Model model("<ABSOLUTE PATH TO MODEL>");
+
+    // modelShader.use();
+    // modelShader.setVec3("light.position", 0.0f, 0.0f, 0.0f);
+    // modelShader.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
+    // modelShader.setVec3("light.diffuse", 0.0f, 0.0f, 0.0f);
+    // modelShader.setVec3("light.specular", 0.0f, 0.0f, 0.0f);
+    // modelShader.setFloat("material.shininess", 64);
 
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = static_cast<float>(glfwGetTime());
@@ -120,18 +149,22 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        shaderProgram.use();
+        // modelShader.use();
+        //
+        // glm::mat4 model = glm::mat4(1.0f);
+        // modelShader.setMat4("model", model);
+        //
+        // glm::mat4 view = camera.GetViewMatrix();
+        // modelShader.setMat4("view", view);
+        //
+        // glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.01f, 100.0f);
+        // modelShader.setMat4("projection", projection);
 
-        glm::mat4 model = glm::mat4(1.0f);
-        shaderProgram.setMat4("model", model);
-
-        glm::mat4 view = camera.GetViewMatrix();
-        shaderProgram.setMat4("view", view);
-
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.01f, 100.0f);
-        shaderProgram.setMat4("projection", projection);
-
-        // bagModel.Draw(shaderProgram);
+        // model.Draw(modelShader);
+        
+        triangleShader.use();
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
