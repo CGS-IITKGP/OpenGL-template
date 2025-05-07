@@ -1,5 +1,5 @@
 CXX := clang++
-LINKER := -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl -lassimp
+LINKER := -lglfw -lGL -lm -lX11 -lpthread -lXrandr -ldl -lassimp
 SRC := src
 SHADER := src/shader/shader.cpp
 CAMERA := src/camera
@@ -11,7 +11,7 @@ BUILD := build
 run: $(OUT)
 	./$(BUILD)/$(OUT)
 
-$(OUT): $(SRC)/gl.cpp $(SHADER) $(MODEL) $(SRC)/glad.c $(MESH)
+$(OUT): $(SRC)/main.cpp $(SHADER) $(MODEL) $(SRC)/glad.c $(MESH)
 	if [ ! -d "$(BUILD)" ]; then mkdir $(BUILD); fi
 	$(CXX) $^ $(LINKER) -o $(BUILD)/$(OUT)
 
