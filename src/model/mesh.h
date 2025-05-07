@@ -1,8 +1,8 @@
 #ifndef MESH_H
 #define MESH_H
 
-#include <glm/glm.hpp>
 #include <assimp/scene.h>
+#include <glm/glm.hpp>
 
 #include "../shader/shader.hpp"
 
@@ -10,34 +10,31 @@
 #include <vector>
 using namespace std;
 
-struct Vertex 
-{
+struct Vertex {
     glm::vec3 Position;
     glm::vec3 Normal;
     glm::vec2 TexCoords;
 };
 
-struct Texture 
-{
+struct Texture {
     unsigned int id;
     string type;
     aiString path;
 };
 
-class Mesh 
-{
-    public:
-        vector<Vertex> vertices;
-        vector<unsigned int> indices;
-        vector<Texture> textures;
+class Mesh {
+public:
+    vector<Vertex> vertices;
+    vector<unsigned int> indices;
+    vector<Texture> textures;
 
-        Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
-        void Draw(Shader &shader);
+    Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
+    void Draw(Shader& shader);
 
-    private:
-        unsigned int VAO, VBO, EBO;
+private:
+    unsigned int VAO, VBO, EBO;
 
-        void setupMesh();
+    void setupMesh();
 };
 
 #endif
