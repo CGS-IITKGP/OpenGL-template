@@ -92,4 +92,5 @@ make clean
   - [DeepWiki](https://deepwiki.com/dhanvithnayak/OpenGL-template)
   - [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dhanvithnayak/OpenGL-template)
 <p align="right">(<a href="#top">back to top</a>)</p>
