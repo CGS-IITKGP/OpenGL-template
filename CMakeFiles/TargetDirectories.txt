@@ -1,0 +1,3 @@
+/home/niteshk/Desktop/OpenGL-template/CMakeFiles/ogt.dir
+/home/niteshk/Desktop/OpenGL-template/CMakeFiles/edit_cache.dir
+/home/niteshk/Desktop/OpenGL-template/CMakeFiles/rebuild_cache.dir
