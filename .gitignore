@@ -1,1 +1,22 @@
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeDumps/
+cmake_install.cmake
+
+# Build directories
 build/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
