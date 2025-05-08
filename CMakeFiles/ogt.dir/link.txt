@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ogt.dir/link.d CMakeFiles/ogt.dir/src/main.cpp.o CMakeFiles/ogt.dir/src/glad.c.o CMakeFiles/ogt.dir/src/shader/shader.cpp.o CMakeFiles/ogt.dir/src/model/mesh.cpp.o CMakeFiles/ogt.dir/src/model/model.cpp.o -o ogt  /usr/lib64/libGL.so -lglfw /usr/lib64/libassimp.so.5.3.1 -lpugixml -lpoly2tri -lrt
