@@ -6,6 +6,7 @@ cmake_install.cmake
 
 # Build directories
 build/
+Makefile
 
 # IDE files
 .vscode/
