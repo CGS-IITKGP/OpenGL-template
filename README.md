@@ -58,30 +58,42 @@ The following dependencies are required to be installed for the project to funct
   sudo apt install lilbassimp5 libassimp-dev
   ```
   Or, build from source
-* **Make** <br />
-  Unix-like systems can get `make` through package managers
-  ```sh
-  sudo apt install make
-  ```
-  For Windows, you can get [Make for Windows](https://gnuwin32.sourceforge.net/packages/make.htm), use [Chocolatey](https://chocolatey.org/install) to install `make` or use WSL2
-  ```sh
-  choco install make
-  ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+* **CMake**
+	- Linux (Ubuntu/Debian-based)
+		Install using package managers or from their [CMake GitHub page](https://github.com/Kitware/CMake).
 
+		```shell
+		sudo apt update
+		sudo apt install cmake
+		```
+	- macOS
+
+		Install using Homebrew or from their [CMake GitHub page](https://github.com/Kitware/CMake).
+		
+		```shell
+		brew install cmake
+		```
+	- Windows
+		Install using the installer or from their [CMake GitHub page](https://github.com/Kitware/CMake).
+		1. Download the installer from the [CMake website](https://cmake.org/download/).
+    	2. Follow the installation steps.
+    	Alternatively, you can install it via winget:
+		`winget install cmake`
+		
 ### Installation
-
 _The environment has now been set up and configured to properly compile and run the project._
 
-Run `make` to compile and run the project
-```sh
-make
-```
-The compiled binary is saved in `./build`
+Run `cmake` to compile and run the project
 
+```shell
+cmake .
+```
+
+The compiled binary is saved in `./build`
 To clean the build directory, run
-```sh
-make clean
+
+```shell
+rm -rf /build
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
