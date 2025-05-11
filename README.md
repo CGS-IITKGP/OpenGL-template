@@ -80,7 +80,8 @@ The following dependencies are required to be installed for the project to funct
     	2. Follow the installation steps.
     	Alternatively, you can install it via winget:
 		`winget install cmake`
-		
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Installation
 _The environment has now been set up and configured to properly compile and run the project._
 
