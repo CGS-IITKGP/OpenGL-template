@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 project(ogt)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
@@ -18,23 +17,8 @@ add_executable(ogt
     ${CMAKE_SOURCE_DIR}/src/model/model.cpp
 )
 target_include_directories(ogt PRIVATE
-    # Windows Includes
-    if(WIN32)
-        C:/MinGW/include/
-        "C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/<version>/include/"
-        "C:/Program Files (x86)/Windows Kits/10/Include/<version>/ucrt/"
-        C:/TDM-GCC/include/
-    # macOS Includes
-    elseif(APPLE)
-        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/<version>/"
-        "/Library/Developer/CommandLineTools/usr/include/c++/"
-        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/"
-        /usr/local/include/
-        /opt/homebrew/include/
-    # Linux Includes
-    else()
-        /usr/include/
-    endif()
+    # Add the location of your assimp library/ include folder
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 

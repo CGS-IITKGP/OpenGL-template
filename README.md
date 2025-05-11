@@ -40,11 +40,11 @@ The following dependencies are required to be installed for the project to funct
   # sudo apt install libglfw3-wayland
   ```
   Otherwise, install binaries from their [download page](https://www.glfw.org/download.html) <br />
+  After downloading, take the include folder and paste it in the include folder of this project. <br>
   If you are feeling especially adventurous, you could build from source <br />
 * **glad** <br />
   Go to the [glad web service](http://glad.dav1d.de), set language as C++, OpenGL version to 4.6 and profile to Core. Make sure `generate loader` option is selected.
-  Click Generate and copy the `glad` and `KHR` folders to your includes location
-
+  Click Generate and copy the `glad` and `KHR` folders to the project's include folder.
   Relevant learnopengl page for GLFW and glad: [link](https://learnopengl.com/Getting-started/Creating-a-window)
 * **glm** <br />
   Install using package managers or from their [downloads page](https://glm.g-truc.net/0.9.8/index.html)
