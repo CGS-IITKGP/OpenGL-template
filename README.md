@@ -94,7 +94,7 @@ The compiled binary is saved in `./build`
 To clean the build directory, run
 
 ```shell
-rm -rf /build
+rm -rf build/
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
