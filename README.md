@@ -43,7 +43,9 @@ The following dependencies are required to be installed for the project to funct
   After downloading, take the include folder and paste it in the include folder of this project. <br>
   If you are feeling especially adventurous, you could build from source <br />
 * **glad** <br />
-  Go to the [glad web service](http://glad.dav1d.de), set language as C++, OpenGL version to 4.6 and profile to Core. Make sure `generate loader` option is selected.
+  Go to the [glad web service](http://glad.dav1d.de), set language as C++, OpenGL version to 4.1 and profile to Core. Make sure `generate loader` option is selected.
+  - The latest version of OpenGL is 4.6 but we are using 4.1 for the sake of macOS compatibility.
+
   Click Generate and copy the `glad` and `KHR` folders to the project's include folder.
   Relevant learnopengl page for GLFW and glad: [link](https://learnopengl.com/Getting-started/Creating-a-window)
 * **glm** <br />
