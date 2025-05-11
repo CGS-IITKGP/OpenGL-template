@@ -1,5 +1,5 @@
 // FRAGMENT SHADER FOR TRIANGLE
-#version 460 core
+#version 410 core
 
 in vec4 Color;
 out vec4 FragColor;
