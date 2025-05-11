@@ -57,7 +57,8 @@ The following dependencies are required to be installed for the project to funct
   ```sh
   sudo apt install lilbassimp5 libassimp-dev
   ```
-  Or, build from source
+  Or, build from source <br>
+  You need to know the location of this and paste this location in the given space in CMakeLists.txt
 * **CMake**
 	- Linux (Ubuntu/Debian-based)
 		Install using package managers or from their [CMake GitHub page](https://github.com/Kitware/CMake).
