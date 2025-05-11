@@ -109,4 +109,6 @@ rm -rf build/
   - [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CGS-IITKGP/OpenGL-template)
+
+This repo was forked from [dhanvithnayak/OpenGL-template](https://github.com/dhanvithnayak/OpenGL-template)
 <p align="right">(<a href="#top">back to top</a>)</p>
