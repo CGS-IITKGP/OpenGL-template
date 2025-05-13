@@ -76,7 +76,7 @@ rm -rf build/
 ```
 <br />
 
-**Note**: The latest version of OpenGL is 4.6 but we are using 4.1 for the sake of macOS compatibility. [Click here to upgrade to 4.6](./UPGRADE.md)
+**Note**: The latest version of OpenGL is 4.6 but we are using 4.1 for the sake of macOS compatibility. [Click here to upgrade to the later version](./UPGRADE.md)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
