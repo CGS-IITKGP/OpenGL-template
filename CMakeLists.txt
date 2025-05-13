@@ -8,7 +8,7 @@ cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
 find_package(assimp REQUIRED)
-find_package(glfw3 REQUIRED)
+add_subdirectory(external/glfw)
 
 add_executable(ogt
     ${CMAKE_SOURCE_DIR}/src/main.cpp
