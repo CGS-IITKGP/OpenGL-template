@@ -6,3 +6,9 @@
 	path = external/glfw
 	url = https://github.com/glfw/glfw.git
 	branch = master
+[submodule "external/assimp"]
+	path = external/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "external/glm"]
+	path = external/glm
+	url = https://github.com/g-truc/glm.git

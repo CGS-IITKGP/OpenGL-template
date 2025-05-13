@@ -7,7 +7,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
-find_package(assimp REQUIRED)
+
+add_subdirectory(external/assimp)
 add_subdirectory(external/glfw)
 
 add_executable(ogt
@@ -20,6 +21,7 @@ add_executable(ogt
 target_include_directories(ogt PRIVATE
     ${CMAKE_SOURCE_DIR}/external/glad/include
     ${CMAKE_SOURCE_DIR}/external/glfw/include
+    ${CMAKE_SOURCE_DIR}/external/glm
 )
 
 
