@@ -26,7 +26,11 @@ _To set up the project, follow the steps below._
 
 ### Clone the repository
 ```sh
-git clone https://github.com/CGS-IITKGP/OpenGL-template.git
+git clone https://github.com/CGS-IITKGP/OpenGL-template.git --recurse-submodules
+```
+**Update submodule using**
+```sh
+git submodule update --init --recursive
 ```
 
 ### Prerequisites

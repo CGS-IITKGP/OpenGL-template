@@ -5,9 +5,6 @@ CMakeDumps/
 cmake_install.cmake
 include/
 
-# Git
-exclude/
-
 # Build directories
 build/
 Makefile
