@@ -7,9 +7,6 @@
 - [triangle.vert.glsl](./shaders/triangle.vert.glsl)
 <br />
 
-**glad**: Change version from 4.1 to 4.6 while downloading and replace glad.c. (Also header files)
-<br />
-
 [**main.cpp**](./src/main.cpp): Change the minor version from 1 to 6.
 <br /> 
 `glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);`
