@@ -35,36 +35,7 @@ git submodule update --init --recursive
 
 ### Prerequisites
 The following dependencies are required to be installed for the project to function properly:
-* **GLFW** <br />
-  You can install this from any package manager, if you use one (e.g., `apt` for Debian-based systems, `brew` or `choco`)
-  ```sh
-  sudo apt install libglfw3 libglfw3-dev
 
-  # Uncomment this if you use Wayland
-  # sudo apt install libglfw3-wayland
-  ```
-  Otherwise, install binaries from their [download page](https://www.glfw.org/download.html) <br />
-  After downloading, take the include folder and paste it in the include folder of this project. <br>
-  If you are feeling especially adventurous, you could build from source <br />
-* **glad** <br />
-  Go to the [glad web service](http://glad.dav1d.de), set language as C++, OpenGL version to 4.1 and profile to Core. Make sure `generate loader` option is selected.
-  - The latest version of OpenGL is 4.6 but we are using 4.1 for the sake of macOS compatibility. [Click here to upgrade to 4.6](./UPGRADE.md)
-
-  Click Generate and copy the `glad` and `KHR` folders to the project's include folder.
-  Relevant learnopengl page for GLFW and glad: [link](https://learnopengl.com/Getting-started/Creating-a-window)
-* **glm** <br />
-  Install using package managers or from their [downloads page](https://glm.g-truc.net/0.9.8/index.html)
-  ```sh
-  sudo apt install libglm-dev
-  ```
-  Relevant learnopengl page: [link](https://learnopengl.com/Getting-started/Transformations) look for the In Practice section
-* **assimp** <br />
-  Install using package managers or from their [Github page](https://github.com/assimp/assimp/blob/master/Build.md)
-  ```sh
-  sudo apt install lilbassimp5 libassimp-dev
-  ```
-  Or, build from source <br>
-  You need to know the location of this and paste this location in the given space in CMakeLists.txt
 * **CMake**
 	- Linux (Ubuntu/Debian-based)
 		Install using package managers or from their [CMake GitHub page](https://github.com/Kitware/CMake).
@@ -103,6 +74,10 @@ To clean the build directory, run
 ```shell
 rm -rf build/
 ```
+<br />
+
+**Note**: The latest version of OpenGL is 4.6 but we are using 4.1 for the sake of macOS compatibility. [Click here to upgrade to 4.6](./UPGRADE.md)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
