@@ -12,14 +12,14 @@ find_package(glfw3 REQUIRED)
 
 add_executable(ogt
     ${CMAKE_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_SOURCE_DIR}/src/glad.c
+    ${CMAKE_SOURCE_DIR}/external/glad/src/glad.c
     ${CMAKE_SOURCE_DIR}/src/shader/shader.cpp
     ${CMAKE_SOURCE_DIR}/src/model/mesh.cpp
     ${CMAKE_SOURCE_DIR}/src/model/model.cpp
 )
 target_include_directories(ogt PRIVATE
-    # Add the location of your assimp library/ include folder
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/external/glad/include
+    ${CMAKE_SOURCE_DIR}/external/glfw/include
 )
 
 
