@@ -6,20 +6,30 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
+
+set(ASSIMP_BUILD_TESTS OFF)
+set(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+set(ASSIMP_BUILD_SAMPLES OFF)
+set(GLFW_BUILD_DOCS OFF)
+set(GLFW_BUILD_EXAMPLES OFF)
+set(GLFW_BUILD_TESTS OFF)
+
 find_package(OpenGL REQUIRED)
-find_package(assimp REQUIRED)
-find_package(glfw3 REQUIRED)
+
+add_subdirectory(external/assimp)
+add_subdirectory(external/glfw)
 
 add_executable(ogt
     ${CMAKE_SOURCE_DIR}/src/main.cpp
-    ${CMAKE_SOURCE_DIR}/src/glad.c
+    ${CMAKE_SOURCE_DIR}/external/glad/src/glad.c
     ${CMAKE_SOURCE_DIR}/src/shader/shader.cpp
     ${CMAKE_SOURCE_DIR}/src/model/mesh.cpp
     ${CMAKE_SOURCE_DIR}/src/model/model.cpp
 )
 target_include_directories(ogt PRIVATE
-    # Add the location of your assimp library/ include folder
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/external/glad/include
+    ${CMAKE_SOURCE_DIR}/external/glfw/include
+    ${CMAKE_SOURCE_DIR}/external/glm
 )
 
 
