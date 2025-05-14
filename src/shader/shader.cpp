@@ -117,3 +117,8 @@ void Shader::setVec3(const std::string& name, glm::vec3 vector) const
 {
     glUniform3f(glGetUniformLocation(ID, name.c_str()), vector.x, vector.y, vector.z);
 }
+
+void Shader::reload(Shader *shader, const char* vertexPath, const char* fragmentPath)
+{
+    *shader = Shader(vertexPath, fragmentPath);
+}
