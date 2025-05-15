@@ -123,7 +123,7 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
-    Shader triangleShader(fileio_getpath_r("shaders/triangle.vert.glsl").c_str(), fileio_getpath_r("shaders/triangle.frag.glsl").c_str());
+    Shader triangleShader(fileio_getpath("shaders/triangle.vert.glsl").c_str(), fileio_getpath("shaders/triangle.frag.glsl").c_str());
 
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);

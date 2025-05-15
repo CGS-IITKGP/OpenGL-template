@@ -7,16 +7,19 @@
 #include <string>
 
 /**
- * Get path of given file by traversing each directory in
- * the current directory and outer directories upto _MaxDepth levels
+ * @brief Retrieves the absolute path of a specified file by recursively searching
+ * through the current directory and its parent directories.
  *
- * @param _FileName name of file (can have partial path, like
- * "shaders/some.cool.shader.glsl")
- * @param _MaxDepth Number of directories to traverse up.
- * A _MaxDepth of 1 means the function will search current directory (and any
- * sub directories) and parent directory
+ * @param file_name The name of the file to locate. May include a partial path
+ *                  (e.g., "shaders/some.cool.shader.glsl").
+ * @param max_depth The maximum number of parent directories to traverse upward.
+ *                  Default is 5. A value of 1 limits the search to the current
+ *                  directory, its subdirectories, and the immediate parent directory.
+ *
+ * @return std::string The absolute path to the file if found, or an empty string
+ *                     if the file cannot be located within the specified depth.
  */
-std::string fileio_getpath_r (const std::string &_FileName,
-                              size_t _MaxDepth = 5);
+std::string fileio_getpath(const std::string& file_name,
+    size_t max_depth = 5);
 
 #endif // FILEIO_H
