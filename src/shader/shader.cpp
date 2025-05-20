@@ -1,16 +1,19 @@
+#include "FileWatch.hpp"
 #include <fstream>
 #include <glm/ext/matrix_float4x4.hpp>
-#include <iostream>
-#include <sstream>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <memory>
+#include <sstream>
 
 #include "shader.hpp"
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
+Shader::Shader(std::string vertexPath, std::string fragmentPath)
 {
+    const char* vertexPathCStr = vertexPath.c_str();
+    const char* fragmentPathCStr = fragmentPath.c_str();
     std::string vertexCode;
     std::string fragmentCode;
     std::ifstream vShaderFile;
@@ -81,6 +84,9 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+
+    this->vertexPath = vertexPath;
+    this->fragmentPath = fragmentPath;
 }
 
 void Shader::use()
@@ -118,7 +124,38 @@ void Shader::setVec3(const std::string& name, glm::vec3 vector) const
     glUniform3f(glGetUniformLocation(ID, name.c_str()), vector.x, vector.y, vector.z);
 }
 
-void Shader::reload(Shader *shader, const char* vertexPath, const char* fragmentPath)
+void Shader::reloader(const std::string& directory)
 {
-    *shader = Shader(vertexPath, fragmentPath);
+    Shader* shd = this;
+    static filewatch::FileWatch<std::string> watcher(
+        directory,
+        [shd](const std::string& path, const filewatch::Event change_type) {
+            using namespace std::chrono;
+
+            static auto last_trigger_time = steady_clock::now() - milliseconds(300);
+            auto now = steady_clock::now();
+            auto duration_since_last = duration_cast<milliseconds>(now - last_trigger_time);
+
+            if (duration_since_last < milliseconds(200)) {
+                return; // Debounced
+            }
+
+            last_trigger_time = now;
+
+            switch (change_type) {
+            default:
+                if (duration_since_last < milliseconds(200))
+                    return;
+
+                last_trigger_time = now;
+                std::this_thread::sleep_for(milliseconds(100));
+                shd->reload();
+                break;
+            }
+        });
+}
+
+void Shader::reload()
+{
+    *this = Shader(this->vertexPath, this->fragmentPath);
 }
