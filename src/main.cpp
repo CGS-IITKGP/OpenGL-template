@@ -121,7 +121,7 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
-
+    triangleShader.reloader("shaders/");
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -170,8 +170,10 @@ int main()
         //
         // model.Draw(modelShader);
 
-        triangleShader.reload(&triangleShader, "shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
         triangleShader.use();
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            triangleShader.reload();
+        }
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
