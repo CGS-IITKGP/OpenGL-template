@@ -14,7 +14,7 @@ private:
     std::string fragmentPath;
     std::unique_ptr<filewatch::FileWatch<std::string>> watcher = NULL;
     std::atomic<bool> reloadRequested = false;
-    
+
 public:
     unsigned int ID;
 
