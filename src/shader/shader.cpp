@@ -1,4 +1,5 @@
-#include "FileWatch.hpp"
+#include <FileWatch.hpp>
+#include <filesystem>
 #include <fstream>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/glm.hpp>
@@ -10,10 +11,8 @@
 
 #include "shader.hpp"
 
-Shader::Shader(std::string vertexPath, std::string fragmentPath)
+Shader::Shader(std::string vertexPath, std::string fragmentPath, bool enableAutoReload)
 {
-    const char* vertexPathCStr = vertexPath.c_str();
-    const char* fragmentPathCStr = fragmentPath.c_str();
     std::string vertexCode;
     std::string fragmentCode;
     std::ifstream vShaderFile;
@@ -87,6 +86,14 @@ Shader::Shader(std::string vertexPath, std::string fragmentPath)
 
     this->vertexPath = vertexPath;
     this->fragmentPath = fragmentPath;
+
+    if (enableAutoReload && !watcher) {
+        std::string directory = std::filesystem::path(vertexPath).parent_path().string();
+        setupWatcher(directory);
+        if (watcher) {
+            std::cout << "Watcher is set for directory: " << std::filesystem::path(vertexPath).parent_path().string() << std::endl;
+        }
+    }
 }
 
 void Shader::use()
@@ -124,38 +131,34 @@ void Shader::setVec3(const std::string& name, glm::vec3 vector) const
     glUniform3f(glGetUniformLocation(ID, name.c_str()), vector.x, vector.y, vector.z);
 }
 
-void Shader::reloader(const std::string& directory)
+void Shader::setupWatcher(const std::string& directory)
 {
-    Shader* shd = this;
-    static filewatch::FileWatch<std::string> watcher(
+    watcher = std::make_unique<filewatch::FileWatch<std::string>>(
         directory,
-        [shd](const std::string& path, const filewatch::Event change_type) {
+        [this](const std::string& path, const filewatch::Event change_type) {
             using namespace std::chrono;
-
-            static auto last_trigger_time = steady_clock::now() - milliseconds(300);
-            auto now = steady_clock::now();
-            auto duration_since_last = duration_cast<milliseconds>(now - last_trigger_time);
-
-            if (duration_since_last < milliseconds(200)) {
-                return; // Debounced
-            }
-
-            last_trigger_time = now;
-
-            switch (change_type) {
-            default:
-                if (duration_since_last < milliseconds(200))
-                    return;
-
-                last_trigger_time = now;
-                std::this_thread::sleep_for(milliseconds(100));
-                shd->reload();
-                break;
+            if (change_type == filewatch::Event::added || change_type == filewatch::Event::modified) {
+                std::cout << "change detected" << std::endl;
+                std::this_thread::sleep_for(milliseconds(1000));
+                this->change();
             }
         });
 }
 
 void Shader::reload()
 {
-    *this = Shader(this->vertexPath, this->fragmentPath);
+    this->ID = Shader(vertexPath, fragmentPath, false).ID;
+    std::cout << "Shader reloaded" << std::endl;
+}
+
+void Shader::change()
+{
+    reloadRequested = true;
+}
+
+void Shader::autoreload()
+{
+    if (reloadRequested.exchange(false)) {
+        reload();
+    }
 }

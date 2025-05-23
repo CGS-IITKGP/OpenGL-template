@@ -30,6 +30,7 @@ target_include_directories(ogt PRIVATE
     ${CMAKE_SOURCE_DIR}/external/glad/include
     ${CMAKE_SOURCE_DIR}/external/glfw/include
     ${CMAKE_SOURCE_DIR}/external/glm
+    ${CMAKE_SOURCE_DIR}/external/
 )
 
 
@@ -38,3 +39,10 @@ target_link_libraries(ogt
     glfw
     assimp::assimp
 )
+
+if(APPLE)
+    find_library(COREFOUNDATION_LIBRARY CoreFoundation)
+    find_library(CORESERVICES_LIBRARY CoreServices)
+    target_link_libraries(ogt
+     ${COREFOUNDATION_LIBRARY} ${CORESERVICES_LIBRARY})
+endif()
