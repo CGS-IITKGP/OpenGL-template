@@ -25,6 +25,7 @@ add_executable(ogt
     ${CMAKE_SOURCE_DIR}/src/shader/shader.cpp
     ${CMAKE_SOURCE_DIR}/src/model/mesh.cpp
     ${CMAKE_SOURCE_DIR}/src/model/model.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/fileio.cpp
 )
 target_include_directories(ogt PRIVATE
     ${CMAKE_SOURCE_DIR}/external/glad/include

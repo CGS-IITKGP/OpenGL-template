@@ -13,6 +13,8 @@
 #include "model/model.h"
 #include "shader/shader.hpp"
 
+#include "utils/fileio.hpp"
+
 #include <iostream>
 
 const unsigned int SCR_WIDTH = 800;
@@ -123,7 +125,9 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
+    // Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
+    Shader triangleShader(fileio_getpath("shaders/triangle.vert.glsl").c_str(), fileio_getpath("shaders/triangle.frag.glsl").c_str());
+
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
