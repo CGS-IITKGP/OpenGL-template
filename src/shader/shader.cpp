@@ -142,6 +142,9 @@ void Shader::setupWatcher(const std::string& directory)
                 std::this_thread::sleep_for(milliseconds(1000));
                 this->change();
             }
+            if (change_type == filewatch::Event::removed) {
+                std::cout << "Warning: " << path << " was removed." << std::endl;
+            }
         });
 }
 
