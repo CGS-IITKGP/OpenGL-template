@@ -1,15 +1,17 @@
+#include <FileWatch.hpp>
+#include <filesystem>
 #include <fstream>
 #include <glm/ext/matrix_float4x4.hpp>
-#include <iostream>
-#include <sstream>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <memory>
+#include <sstream>
 
 #include "shader.hpp"
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
+Shader::Shader(std::string vertexPath, std::string fragmentPath, bool enableAutoReload)
 {
     std::string vertexCode;
     std::string fragmentCode;
@@ -81,6 +83,17 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+
+    this->vertexPath = vertexPath;
+    this->fragmentPath = fragmentPath;
+
+    if (enableAutoReload && !watcher) {
+        std::string directory = std::filesystem::path(vertexPath).parent_path().string();
+        setupWatcher(directory);
+        if (watcher) {
+            std::cout << "Watcher is set for directory: " << std::filesystem::path(vertexPath).parent_path().string() << std::endl;
+        }
+    }
 }
 
 void Shader::use()
@@ -116,4 +129,39 @@ void Shader::setVec3(const std::string& name, float x, float y, float z) const
 void Shader::setVec3(const std::string& name, glm::vec3 vector) const
 {
     glUniform3f(glGetUniformLocation(ID, name.c_str()), vector.x, vector.y, vector.z);
+}
+
+void Shader::setupWatcher(const std::string& directory)
+{
+    watcher = std::make_unique<filewatch::FileWatch<std::string>>(
+        directory,
+        [this](const std::string& path, const filewatch::Event change_type) {
+            using namespace std::chrono;
+            if (change_type == filewatch::Event::added || change_type == filewatch::Event::modified) {
+                std::cout << "change detected" << std::endl;
+                std::this_thread::sleep_for(milliseconds(1000));
+                this->change();
+            }
+            if (change_type == filewatch::Event::removed) {
+                std::cout << "Warning: " << path << " was removed." << std::endl;
+            }
+        });
+}
+
+void Shader::reload()
+{
+    this->ID = Shader(vertexPath, fragmentPath, false).ID;
+    std::cout << "Shader reloaded" << std::endl;
+}
+
+void Shader::change()
+{
+    reloadRequested = true;
+}
+
+void Shader::autoreload()
+{
+    if (reloadRequested.exchange(false)) {
+        reload();
+    }
 }
