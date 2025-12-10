@@ -3,9 +3,11 @@
 <br />
 <div align="center">
   <img width="200" alt="image" src="https://github.com/user-attachments/assets/5911a8fb-1232-4c44-8778-a57ea34f7162">
-  <h3 align="center">OpenGL Template</h3>
+  <h3 align="center">Glint</h3>
 
   <p align="center">
+    <i style="font-size: 0.8em; color: #666;">Originally called ogt (OpenGL Template)</i>
+	<br />
     <i>Boilerplate for OpenGL applications</i>
     <br />
   </p>
@@ -26,7 +28,7 @@ _To set up the project, follow the steps below._
 
 ### Clone the repository
 ```sh
-git clone https://github.com/CGS-IITKGP/OpenGL-template.git --recurse-submodules
+git clone https://github.com/CGS-IITKGP/Glint.git --recurse-submodules
 ```
 **Update submodule using**
 ```sh
@@ -38,6 +40,7 @@ The following dependencies are required to be installed for the project to funct
 
 * **CMake**
 	- Linux (Ubuntu/Debian-based)
+    
 		Install using package managers or from their [CMake GitHub page](https://github.com/Kitware/CMake).
 
 		```shell
@@ -52,6 +55,7 @@ The following dependencies are required to be installed for the project to funct
 		brew install cmake
 		```
 	- Windows
+    
 		Install using the installer or from their [CMake GitHub page](https://github.com/Kitware/CMake).
 		1. Download the installer from the [CMake website](https://cmake.org/download/).
     	2. Follow the installation steps.
@@ -87,7 +91,7 @@ rm -rf build/
   - [DeepWiki](https://deepwiki.com/CGS-IITKGP/OpenGL-template/)
   - [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CGS-IITKGP/OpenGL-template)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CGS-IITKGP/Glint)
 
 This repo was forked from [dhanvithnayak/OpenGL-template](https://github.com/dhanvithnayak/OpenGL-template)
 <p align="right">(<a href="#top">back to top</a>)</p>
