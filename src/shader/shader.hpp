@@ -10,15 +10,16 @@
 
 class Shader {
 private:
-    std::string vertexPath;
-    std::string fragmentPath;
+    std::vector<std::string> loadedPaths; // paths of shaders
+
     std::unique_ptr<filewatch::FileWatch<std::string>> watcher = NULL;
     std::atomic<bool> reloadRequested = false;
 
 public:
-    unsigned int ID;
+    unsigned int ID = 0;
 
-    Shader(std::string vertexPath, std::string fragmentPath, bool enableAutoReload = true);
+    explicit Shader(const std::vector<std::string>& shaderPaths, bool enableAutoReload = true);
+    ~Shader();
 
     void use();
 
