@@ -29,8 +29,15 @@ public:
         : Shader(std::string(vertexPath), std::string(fragmentPath))
     {
     }
+
+    Shader(char const* vertexPath, char const* geometryPath, char const* fragmentPath)
+        : Shader(std::string(vertexPath), std::string(geometryPath), std::string(fragmentPath))
+    {
+    }
+
     Shader(std::string vertexPath, std::string fragmentPath, bool enableAutoReload = true);
     Shader(std::string vertexPath, std::string geometryPath, std::string fragmentPath, bool enableAutoReload = true);
+
     explicit Shader(std::string computePath, bool enableAutoReload = true);
 
     ~Shader();
