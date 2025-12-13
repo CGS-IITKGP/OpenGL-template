@@ -1,9 +1,9 @@
 // FRAGMENT SHADER FOR TRIANGLE
 #version 410 core
 
-in vec4 Color;
+in vec4 bColor;
 out vec4 FragColor;
 
 void main() {
-    FragColor = Color;
+    FragColor = vec4(1.0f);
 }
