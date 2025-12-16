@@ -6,8 +6,6 @@
   <h3 align="center">Glint</h3>
 
   <p align="center">
-    <i style="font-size: 0.8em; color: #666;">Originally called ogt (OpenGL Template)</i>
-	<br />
     <i>Boilerplate for OpenGL applications</i>
     <br />
   </p>
