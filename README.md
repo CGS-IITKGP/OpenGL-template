@@ -28,7 +28,7 @@ _To set up the project, follow the steps below._
 
 ### Clone the repository
 ```sh
-git clone https://github.com/CGS-IITKGP/Glint.git --recurse-submodules
+git clone https://github.com/CGS-IITKGP/OpenGL-template.git --recurse-submodules
 ```
 **Update submodule using**
 ```sh
@@ -91,7 +91,7 @@ rm -rf build/
   - [DeepWiki](https://deepwiki.com/CGS-IITKGP/OpenGL-template/)
   - [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CGS-IITKGP/Glint)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CGS-IITKGP/OpenGL-template/)
 
 This repo was forked from [dhanvithnayak/OpenGL-template](https://github.com/dhanvithnayak/OpenGL-template)
 <p align="right">(<a href="#top">back to top</a>)</p>
