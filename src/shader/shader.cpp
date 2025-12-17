@@ -24,7 +24,7 @@ static std::string readFileToString(const std::string& path)
     return ss.str();
 }
 
-unsigned int compile(GLenum type, const std::string& src, const std::string& path)
+unsigned int Shader::compile(GLenum type, const std::string& src, const std::string& path)
 {
     unsigned int shader = glCreateShader(type);
     int success;

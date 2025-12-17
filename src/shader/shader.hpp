@@ -18,6 +18,7 @@ private:
     std::unique_ptr<filewatch::FileWatch<std::string>> watcher = NULL;
     std::atomic<bool> reloadRequested = false;
 
+    unsigned int compile(GLenum type, const std::string& src, const std::string& path);
     void linkProgram(std::vector<unsigned int> shaders);
     void setupStageWatcher();
 
