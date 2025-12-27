@@ -13,6 +13,7 @@ run: $(OUT)
 
 $(OUT): $(SRC)/gl.cpp $(SHADER) $(MODEL) $(SRC)/glad.c $(MESH)
 	if [ ! -d "$(BUILD)" ]; then mkdir $(BUILD); fi
+        cp -r shaders/ $(BUILD)/
 	$(CXX) $^ $(LINKER) -o $(BUILD)/$(OUT)
 
 clean:

@@ -103,7 +103,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
 
-    Shader shaderProgram("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
+    Shader shaderProgram("./shaders/shader.vert.glsl", "./shaders/shader.frag.glsl");
     Model bagModel("<ABSOLUTE PATH TO MODEL>");
 
     shaderProgram.use();
