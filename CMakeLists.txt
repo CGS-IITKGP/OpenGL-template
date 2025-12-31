@@ -18,6 +18,7 @@ find_package(OpenGL REQUIRED)
 
 add_subdirectory(external/assimp)
 add_subdirectory(external/glfw)
+add_subdirectory(external/bullet3)
 
 add_executable(glint
     ${CMAKE_SOURCE_DIR}/src/main.cpp
@@ -32,6 +33,7 @@ target_include_directories(glint PRIVATE
     ${CMAKE_SOURCE_DIR}/external/glfw/include
     ${CMAKE_SOURCE_DIR}/external/glm
     ${CMAKE_SOURCE_DIR}/external/
+    ${CMAKE_SOURCE_DIR}/external/bullet3/src
 )
 
 
@@ -39,6 +41,7 @@ target_link_libraries(glint
     OpenGL::GL
     glfw
     assimp::assimp
+    BulletDynamics BulletCollision LinearMath
 )
 
 if(APPLE)
