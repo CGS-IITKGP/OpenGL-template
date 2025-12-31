@@ -18,6 +18,7 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Additional documentation](#additional-documentation)
+  - [Shader System](#shader-system-geometry--compute-shaders)
 </details>
 
 ## Getting Started
@@ -84,6 +85,55 @@ rm -rf build/
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Additional documentation
+
+### Shader system (Geometry & Compute shaders)
+Glint provides a flexible `Shader` abstraction that supports **vertex**, **fragment**, **geometry**, and **compute** shaders.
+
+#### Creating a graphics shader (vertex / fragment / geometry)
+A shader program can be created by passing the required shader paths to the `Shader` constructor.
+
+```cpp
+Shader shader(
+    "shaders/shader.vert.glsl",
+    "shaders/shader.geom.glsl", // optional
+    "shaders/shader.frag.glsl"
+);
+```
+
+- Geometry shaders are **optional**
+- If a geometry shader is not provided, the pipeline defaults to vertex → fragment
+- Shader hot-reloading works for all graphics stages
+
+---
+
+#### Compute shaders
+
+Compute shaders are **not part of the graphics pipeline**. A compute shader is created using the dedicated constructor:
+
+```cpp
+Shader computeShader(
+    "shaders/particle_update.comp.glsl"
+);
+```
+
+Compute shaders are executed explicitly using:
+
+```cpp
+computeShader.use();
+glDispatchCompute(x, y, z);
+glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+```
+
+---
+
+#### Notes on OpenGL version support
+
+- Geometry shaders are supported in OpenGL **4.1+**
+- Compute shaders and SSBOs require OpenGL **4.3+**
+- Users must upgrade the OpenGL version to use compute shaders  
+  (see `UPGRADE.md`)
+
+---
 
   - [License](/LICENSE)
   - [DeepWiki](https://deepwiki.com/CGS-IITKGP/OpenGL-template/)

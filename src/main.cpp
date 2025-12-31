@@ -80,7 +80,7 @@ int main()
 {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1); // 3+ for using compute shaders
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -126,7 +126,7 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Shader triangleShader("shaders/triangle.vert.glsl", "shaders/triangle.frag.glsl");
-    Shader triangleShader(fileio_getpath("shaders/triangle.vert.glsl").c_str(), fileio_getpath("shaders/triangle.frag.glsl").c_str());
+    Shader triangleShader(fileio_getpath("shaders/triangle.vert.glsl").c_str(), fileio_getpath("shaders/triangle.geom.glsl").c_str(), fileio_getpath("shaders/triangle.frag.glsl").c_str());
 
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
@@ -142,6 +142,49 @@ int main()
 
     // -------------------------------------------
     // END OF TRIANGLE SHI
+    // -------------------------------------------
+
+    // -------------------------------------------
+    // FOR PARTICLE RENDER
+    // THIS IS DEMONSTRATION FOR COMPUTE SHADERS
+    // -------------------------------------------
+
+    // struct Particle {
+    //     glm::vec4 position;
+    //     glm::vec4 velocity;
+    //     float life;
+    //     float _pad[3]; // std430 alignment
+    // };
+    //
+    // constexpr int PARTICLE_COUNT = 1024;
+    // std::vector<Particle> particles(PARTICLE_COUNT);
+    //
+    // for (auto& p : particles) {
+    //     p.position = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    //     p.velocity = glm::vec4(
+    //         (rand() / (float)RAND_MAX - 0.5f) * 0.5f,
+    //         (rand() / (float)RAND_MAX - 0.5f) * 0.5f,
+    //         0.0f,
+    //         0.0f);
+    //     p.life = rand() / float(RAND_MAX);
+    // }
+    //
+    // GLuint particleSSBO;
+    // glGenBuffers(1, &particleSSBO);
+    // glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleSSBO);
+    // glBufferData(
+    //     GL_SHADER_STORAGE_BUFFER,
+    //     particles.size() * sizeof(Particle),
+    //     particles.data(),
+    //     GL_DYNAMIC_DRAW);
+    // glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleSSBO);
+    // glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+    //
+    // Shader particleComputeShader(fileio_getpath("shaders/particle.comp.glsl").c_str());
+    // Shader particleShader(fileio_getpath("shaders/particle.vert.glsl").c_str(), fileio_getpath("shaders/particle.frag.glsl").c_str());
+
+    // -------------------------------------------
+    // END OF PARTICLE SHI
     // -------------------------------------------
 
     // Shader modelShader("shaders/shader.vert.glsl", "shaders/shader.frag.glsl");
@@ -177,8 +220,21 @@ int main()
         // model.Draw(modelShader);
         triangleShader.autoreload();
         triangleShader.use();
+        triangleShader.setFloat("uTime", glfwGetTime()); // used in triangle.geom.glsl
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // --- Update particles (compute) ---
+        // particleComputeShader.use();
+        // particleComputeShader.setFloat("dt", deltaTime);
+        //
+        // glDispatchCompute((PARTICLE_COUNT + 255) / 256, 1, 1);
+        // glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+        //
+        // // --- Render particles ---
+        // particleShader.use();
+        // glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleSSBO);
+        // glDrawArrays(GL_POINTS, 0, PARTICLE_COUNT);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
