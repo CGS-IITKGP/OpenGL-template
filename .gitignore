@@ -21,4 +21,4 @@ Makefile
 .DS_Store
 
 # Windows
-Thumbs.db
+Thumbs.db/external/bullet3/build/
