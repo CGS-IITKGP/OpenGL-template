@@ -50,11 +50,3 @@ if(APPLE)
     target_link_libraries(glint
      ${COREFOUNDATION_LIBRARY} ${CORESERVICES_LIBRARY})
 endif()
-# Bullet test executable
-add_executable(bullet_test test_bullet_simple.cpp)
-target_link_libraries(bullet_test
-    BulletDynamics BulletCollision LinearMath
-)
-target_include_directories(bullet_test PRIVATE
-    ${CMAKE_SOURCE_DIR}/external/bullet3/src
-)
